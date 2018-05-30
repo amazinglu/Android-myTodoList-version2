@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">todo_list</string>
+
+    <string name="all_list">all list</string>
+    <string name="todo_list">todo list</string>
+    <string name="finish_list">finished list</string>
+
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
+</resources>
