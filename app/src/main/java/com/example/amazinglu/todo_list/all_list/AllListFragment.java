@@ -14,15 +14,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AllListFragment extends Fragment {
-
-    @BindView(R.id.fragment_text) TextView text;
+    public static final String KEY_LIST_TYPE = "list_type";
+    public static final String KEY_LIST_TYPE_TODO = "list_type_todo";
+    public static final String KEY_LIST_TYPE_FINISH = "list_type_finish";
 
     private static final String KEY_PAGE_NUM = "page_num";
     private int pageNum;
 
-    public static AllListFragment newInstance(int pageNum) {
+
+    public static AllListFragment newInstance(String listType) {
         Bundle args = new Bundle();
-        args.putInt(KEY_PAGE_NUM, pageNum);
+        args.putString(KEY_LIST_TYPE, listType);
         AllListFragment allListFragment = new AllListFragment();
         allListFragment.setArguments(args);
         return allListFragment;
@@ -45,6 +47,6 @@ public class AllListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         int pageNum = getArguments().getInt(KEY_PAGE_NUM);
         ButterKnife.bind(this, view);
-        text.setText("amazing" + pageNum);
+
     }
 }

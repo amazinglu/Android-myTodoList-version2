@@ -89,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
          * 首先要让toolbar的elevation为0，然后让AppBarLayout的elevation也为0
          * */
         getSupportActionBar().setElevation(0);
-        tabLayout.getTabAt(0).setText(R.string.all_list);
-        tabLayout.getTabAt(1).setText(R.string.todo_list);
-        tabLayout.getTabAt(2).setText(R.string.finish_list);
+        tabLayout.getTabAt(0).setText(R.string.todo_list);
+        tabLayout.getTabAt(1).setText(R.string.finish_list);
     }
 }

@@ -13,7 +13,13 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return AllListFragment.newInstance(position);
+        if (position == 0) {
+            return AllListFragment.newInstance(AllListFragment.KEY_LIST_TYPE_TODO);
+        } else if (position == 1) {
+            return AllListFragment.newInstance(AllListFragment.KEY_LIST_TYPE_FINISH);
+        } else { // error
+            return null;
+        }
     }
 
     @Override
