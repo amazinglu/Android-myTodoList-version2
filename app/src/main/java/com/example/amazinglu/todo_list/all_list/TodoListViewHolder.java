@@ -17,8 +17,11 @@ public class TodoListViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.item_body_text_title) TextView title;
     @BindView(R.id.item_body_text_description) TextView description;
 
+    public View mainView;
+
     public TodoListViewHolder(View itemView) {
         super(itemView);
+        mainView = itemView;
         ButterKnife.bind(this, itemView);
     }
 }

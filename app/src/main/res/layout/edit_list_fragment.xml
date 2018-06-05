@@ -1,6 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/todo_edit_app_bar_height"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_list_title_margin_top"/>
+
+        <EditText
+            android:id="@+id/todo_edit_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/edit_list_title_margin_left_right"
+            android:layout_marginRight="@dimen/edit_list_title_margin_left_right"
+            android:layout_marginBottom="@dimen/edit_list_title_margin_bottom"
+            android:singleLine="true"
+            android:textSize="@dimen/edit_list_title_text_size"
+            android:hint="@string/edit_list_title_hint"
+            tools:text="todo"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/todo_edit_body_margin_top"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:padding="@dimen/spacing_medium">
+
+           <ImageView
+               android:id="@+id/detail_image_view"
+               android:layout_width="@dimen/edit_image_view_size"
+               android:layout_height="@dimen/edit_image_view_size"
+               android:layout_centerVertical="true"
+               android:src="@drawable/baseline_toc_black_18dp"/>
+
+           <EditText
+               android:id="@+id/todo_edit_detail"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_toRightOf="@id/detail_image_view"
+               android:textSize="@dimen/edit_text_size_regular"
+               android:hint="@string/edit_list_detail_hint"/>
+       </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/spacing_medium">
+
+            <ImageView
+                android:id="@+id/date_picker_image_view"
+                android:layout_width="@dimen/edit_image_view_size"
+                android:layout_height="@dimen/edit_image_view_size"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/baseline_calendar_today_black_18dp"/>
+
+            <TextView
+                android:id="@+id/todo_edit_remain_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/date_picker_image_view"
+                android:layout_marginLeft="@dimen/edit_date_edit_margin_left"
+                android:textSize="@dimen/edit_text_size_regular"
+                android:hint="wed, May, 12th"/>
+
+            <TextView
+                android:id="@+id/todo_edit_remain_time"
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textSize="@dimen/edit_text_size_regular"
+                android:hint="10:00"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/todo_detail_edit_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/float_action_button_margin"
+        android:src="@drawable/baseline_add_white_18dp"
+        app:layout_anchor="@+id/appbar"
+        app:layout_anchorGravity="bottom|end"/>
+
+</android.support.design.widget.CoordinatorLayout>

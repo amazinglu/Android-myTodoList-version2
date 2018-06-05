@@ -20,6 +20,13 @@ public class Todo implements Parcelable{
         isFinished = false;
     }
 
+    public Todo(String title, Date remainDate) {
+        this.title = title;
+        this.remainDate = remainDate;
+        id = UUID.randomUUID().toString();
+        isFinished = false;
+    }
+
     protected Todo(Parcel in) {
         id = in.readString();
         title = in.readString();
@@ -50,7 +57,7 @@ public class Todo implements Parcelable{
         parcel.writeString(id);
         parcel.writeString(title);
         parcel.writeString(description);
-        parcel.writeString(DateUtil.dateToString(remainDate));
+        parcel.writeString(DateUtil.wholeDateToString(remainDate));
         parcel.writeByte((byte) (isFinished ? 1 : 0));
     }
 }

@@ -10,4 +10,5 @@
     android:elevation="@dimen/toolbar_elevation"
     android:fitsSystemWindows="true"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"/>

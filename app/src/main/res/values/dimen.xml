@@ -4,9 +4,27 @@
 
     <dimen name="view_pager_tab_elevation">0dp</dimen>
 
-    <dimen name="subtitle_text_size">14dp</dimen>
+    <dimen name="subtitle_text_size">24dp</dimen>
     <dimen name="body_text_size">20dp</dimen>
 
-    <dimen name="item_layout_margin">3dp</dimen>
+    <dimen name="item_layout_margin">7dp</dimen>
+    <dimen name="layout_margin_left">15dp</dimen>
     <dimen name="item_body_padding">10dp</dimen>
+
+    <dimen name="float_action_button_margin">14dp</dimen>
+
+    <dimen name="edit_list_title_margin_top">44dp</dimen>
+    <dimen name="edit_list_title_margin_left_right">16dp</dimen>
+    <dimen name="edit_list_title_margin_bottom">32dp</dimen>
+    <dimen name="edit_list_title_text_size">29dp</dimen>
+
+    <dimen name="todo_edit_app_bar_height">144dp</dimen>
+
+    <dimen name="todo_edit_body_margin_top">28dp</dimen>
+
+    <dimen name="spacing_medium">16dp</dimen>
+
+    <dimen name="edit_text_size_regular">18dp</dimen>
+    <dimen name="edit_image_view_size">26dp</dimen>
+    <dimen name="edit_date_edit_margin_left">5dp</dimen>
 </resources>

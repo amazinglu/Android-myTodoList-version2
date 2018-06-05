@@ -7,4 +7,14 @@
 
     <string name="open_drawer">open drawer</string>
     <string name="close_drawer">close drawer</string>
+
+    <string name="past_day">PAST</string>
+    <string name="current_day">TODAY</string>
+    <string name="tomorrow">TOMORROW</string>
+    <string name="no_due_day">NO DUE DAY</string>
+
+    <string name="edit_list_title_hint">what to do next...</string>
+    <string name="edit_list_detail_hint">add some details...</string>
+
+    <string name="edit_delete_button_title">Delete</string>
 </resources>

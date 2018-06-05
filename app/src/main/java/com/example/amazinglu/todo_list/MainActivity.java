@@ -11,6 +11,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.amazinglu.todo_list.model.Todo;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -90,6 +95,6 @@ public class MainActivity extends AppCompatActivity {
          * */
         getSupportActionBar().setElevation(0);
         tabLayout.getTabAt(0).setText(R.string.todo_list);
-        tabLayout.getTabAt(1).setText(R.string.finish_list);
+//        tabLayout.getTabAt(1).setText(R.string.finish_list);
     }
 }

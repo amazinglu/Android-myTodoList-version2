@@ -3,58 +3,57 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/layout_margin_left"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/item_header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/item_layout_margin"
+        android:layout_marginBottom="@dimen/item_layout_margin"
         android:textSize="@dimen/subtitle_text_size"
         android:gravity="left"
-        android:layout_margin="@dimen/item_layout_margin"
         android:fontFamily="sans-serif-medium"
         android:hint="May, 12th"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/item_body"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/item_layout_margin"
-        android:orientation="horizontal"
-        android:padding="@dimen/item_body_padding">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.AppCompatCheckBox
             android:id="@+id/item_body_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/item_layout_margin" />
+            android:gravity="left"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"/>
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/item_body_text_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_toRightOf="@id/item_body_checkbox"
+            android:fontFamily="sans-serif"
+            android:hint="todo1"
+            android:layout_margin="@dimen/item_layout_margin"
+            android:textSize="@dimen/body_text_size" />
 
-            <TextView
-                android:id="@+id/item_body_text_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_layout_margin"
-                android:fontFamily="sans-serif"
-                android:gravity="left"
-                android:hint="todo1"
-                android:textSize="@dimen/body_text_size" />
+        <TextView
+            android:id="@+id/item_body_text_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/item_layout_margin"
+            android:layout_marginLeft="@dimen/item_layout_margin"
+            android:layout_marginBottom="@dimen/item_layout_margin"
+            android:layout_toRightOf="@id/item_body_checkbox"
+            android:layout_below="@id/item_body_text_title"
+            android:fontFamily="sans-serif"
+            android:hint="what the todo list is about"/>
 
-            <TextView
-                android:id="@+id/item_body_text_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/item_layout_margin"
-                android:fontFamily="sans-serif"
-                android:gravity="left"
-                android:hint="what the todo list is about"/>
+    </RelativeLayout>
 
-        </LinearLayout>
-
-
-    </LinearLayout>
 </LinearLayout>
