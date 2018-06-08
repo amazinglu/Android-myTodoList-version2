@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <item name="group_nav_drawer_folder" type="id"/>
+    <item name="folder1" type="id"/>
+    <item name="folder2" type="id"/>
+    <item name="folder3" type="id"/>
+</resources>

@@ -13,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.amazinglu.todo_list.R;
 import com.example.amazinglu.todo_list.edit_list.EditListActivity;
@@ -21,10 +20,8 @@ import com.example.amazinglu.todo_list.edit_list.EditListFragment;
 import com.example.amazinglu.todo_list.model.Todo;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -42,12 +39,14 @@ public class AllListFragment extends Fragment {
     @BindView(R.id.float_action_button_add) FloatingActionButton floatingActionButton;
 
     private int pageNum;
-    private TodoListAdapter adapter;
-    private List<Todo> todoList;
+    private AllListAdapter adapter;
+    private List<Todo> allList;
+    private String listType;
 
-    public static AllListFragment newInstance(String listType) {
+    public static AllListFragment newInstance(String listType, List<Todo> allList) {
         Bundle args = new Bundle();
         args.putString(KEY_LIST_TYPE, listType);
+        args.putParcelableArrayList(KEY_LIST_DATA, (ArrayList<? extends Parcelable>) allList);
         AllListFragment allListFragment = new AllListFragment();
         allListFragment.setArguments(args);
         return allListFragment;
@@ -62,24 +61,23 @@ public class AllListFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.all_list_fragment, container, false);
+        View view = inflater.inflate(R.layout.todo_list_fragment, container, false);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        String listType = getArguments().getString(KEY_LIST_TYPE);
-        todoList = getArguments().getParcelableArrayList(KEY_LIST_DATA);
+        listType = getArguments().getString(KEY_LIST_TYPE);
+        allList = getArguments().getParcelableArrayList(KEY_LIST_DATA);
         ButterKnife.bind(this, view);
 
-        fakeDate();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         /**
          * recycler view 中每个item都有下划线隔开，可以自己定义一个Decoration， 也可以用DividerItemDecoration
          * */
 //        recyclerView.addItemDecoration(new com.example.amazinglu.todo_list.all_list.DividerItemDecoration(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
-        adapter = new TodoListAdapter(todoList, listType, this);
+        adapter = new AllListAdapter(allList, listType, this);
         recyclerView.setAdapter(adapter);
         floatctionButtonSetUp();
     }
@@ -99,18 +97,18 @@ public class AllListFragment extends Fragment {
 
     private void updateItem(Todo todoItem) {
         boolean find = false;
-        for (int i = 0; i < todoList.size(); ++i) {
-            if (todoList.get(i).id.equals(todoItem.id)) {
-                todoList.set(i, todoItem);
+        for (int i = 0; i < allList.size(); ++i) {
+            if (allList.get(i).id.equals(todoItem.id)) {
+                allList.set(i, todoItem);
                 find = true;
                 break;
             }
         }
         if (!find) {
-            todoList.add(todoItem);
+            allList.add(todoItem);
         }
-        // sort the todoList base on remain date
-        Collections.sort(todoList, new Comparator<Todo>() {
+        // sort the allList base on remain date
+        Collections.sort(allList, new Comparator<Todo>() {
             @Override
             public int compare(Todo t1, Todo t2) {
                 if (t1.remainDate == null || t2.remainDate == null) {
@@ -125,9 +123,9 @@ public class AllListFragment extends Fragment {
     }
 
     private void deleteItem(String id) {
-        for (int i = 0; i < todoList.size(); ++i) {
-            if (todoList.get(i).id.equals(id)) {
-                todoList.remove(i);
+        for (int i = 0; i < allList.size(); ++i) {
+            if (allList.get(i).id.equals(id)) {
+                allList.remove(i);
                 adapter.notifyDataSetChanged();
                 break;
             }
@@ -145,32 +143,8 @@ public class AllListFragment extends Fragment {
         });
     }
 
-    private void fakeDate() {
-        todoList = new ArrayList<>();
-        Calendar c = Calendar.getInstance();
-        Date cur = c.getTime();
-        c.add(Calendar.DATE, -1);
-        Date past = c.getTime();
-        c.add(Calendar.DATE, 2);
-        Date tomorrow = c.getTime();
-        c.add(Calendar.DATE, 1);
-        Date d = c.getTime();
-
-        todoList.add(new Todo("past1", past));
-        todoList.get(0).description = "avaduvewqbvnqevqwvqwvqwe";
-        todoList.add(new Todo("past2", past));
-        todoList.get(1).description = "avaduvewqbvnqevqwvqwvqwe";
-        todoList.add(new Todo("current1", cur));
-        todoList.get(2).isFinished = true;
-        todoList.add(new Todo("current2", cur));
-        todoList.get(3).isFinished = true;
-        todoList.add(new Todo("tomorrow1", tomorrow));
-        todoList.add(new Todo("tomorrow2", tomorrow));
-        todoList.add(new Todo("the day after tomorrow1", d));
-    }
-
     public void updateTodo(int position, boolean isFinished) {
-        todoList.get(position).isFinished = isFinished;
+        allList.get(position).isFinished = isFinished;
         adapter.notifyItemChanged(position);
     }
 }

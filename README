@@ -1,0 +1,11 @@
+the app have practice under
+    navigation drawer and toolbar
+    view pager
+    search view in recycler view
+    * 不同的fragment中数据的一致性和同步（没有用RESTful API 的情况下）
+
+
+navigation drawer and toolbar
+
+    1. 如何构造navigation drawer and toolbar 的 layout，在MyDirbbble中的README有详细陈述
+    2. 在 drawer的menus中动态创建新的item

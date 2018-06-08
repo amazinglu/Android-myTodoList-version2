@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class TodoListAdapter extends RecyclerView.Adapter {
+public class AllListAdapter extends RecyclerView.Adapter {
 
     private List<Todo> data;
 
@@ -32,7 +32,7 @@ public class TodoListAdapter extends RecyclerView.Adapter {
     private boolean clickCheckBox = false;
     private int count = 0;
 
-    public TodoListAdapter(List<Todo> todoList, String listType, AllListFragment fragment) {
+    public AllListAdapter(List<Todo> todoList, String listType, AllListFragment fragment) {
         data = todoList;
         allListFragment = fragment;
     }

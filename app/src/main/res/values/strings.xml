@@ -17,4 +17,13 @@
     <string name="edit_list_detail_hint">add some details...</string>
 
     <string name="edit_delete_button_title">Delete</string>
+
+    <string name="search_button_title">search</string>
+
+    <string name="nav_drawer_menus_add_folder_title">add new folder</string>
+    <string name="nav_drawer_menus_add_folder_header_title">List Folder</string>
+    <string name="new_folder_name_hint">name of new folder</string>
+    <string name="add_new_folder_title">New Folder</string>
+    <string name="positive_button_text">Create</string>
+    <string name="negative_button_text">cancel</string>
 </resources>
