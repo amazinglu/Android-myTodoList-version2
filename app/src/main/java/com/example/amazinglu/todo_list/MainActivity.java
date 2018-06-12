@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity
             subMenu.add(folders.get(key).title);
         }
 
+        // force the view to draw again
         navigationView.invalidate();
 
     }

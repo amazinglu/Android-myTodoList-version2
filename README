@@ -3,9 +3,62 @@ the app have practice under
     view pager
     search view in recycler view
     * 不同的fragment中数据的一致性和同步（没有用RESTful API 的情况下）
+    dialog 和 fragment 或者 activity之间传递信息
 
 
 navigation drawer and toolbar
 
     1. 如何构造navigation drawer and toolbar 的 layout，在MyDirbbble中的README有详细陈述
     2. 在 drawer的menus中动态创建新的item
+        function: MainActivity.addMenusItemInNavDrawer()
+        先要在xml file 中有一个该menus和submenus的框架，然后用函数动态的往这个框架中加入item
+    3. 判断 drawer中哪个item被选中
+        function: MainActivity.setUpDrawer.setNavigationItemSelectedListener()
+        可以通过id判断也可以通过title判断
+
+view pager and toolbar
+
+    1. set up the view pager
+        function: MainActivity.setUpViewPager()
+        the view pager use FragmentPagerAdapter to create fragment
+            getItem() use to create the fragment the first time
+            then the fragment has been store to FragmentManager
+        tablayout set together with view pager
+            让 toolbar和view pager tab之间没有突出的shadow，
+            首先要让toolbar的elevation为0，然后让AppBarLayout的elevation也为0
+
+     2. 当 view pager中的数据改变的时候如何让view pager中的fragment的adapter更新
+            => 关键是如何取得fragment的实例
+                => 从fragmentManager中取
+                => 在FragmentPagerAdapter中保存fragment的实例
+        method 1:
+            OnPageChangeListener.onPageSelected(int position)
+            在 view pager 的 page变动的时候会被调用
+            此时可以从FragmentManager 中去取得fragment然后更新
+        method 2:
+            FragmentPagerAdapter.notifyDateSetChange()
+            这个函数会调用FragmentPagerAdapter.getItemPosition(object object)
+            在这列可以update fragment
+            但是update完之后记得重新设置一下tabLayout的text
+        method 3:
+        function: MainActivity.setUpDrawer.onNavigationItemSelected(MenuItem item)
+            在更新数据之后，new 一个FragmentPagerAdapter， 然后重新setUpViewPager
+
+      3. Search View in Recycler View
+        事实上是用到recycler view 中的adapter的函数getFilter()
+        具体参考： https://www.androidhive.info/2017/11/android-recyclerview-with-search-filter-functionality/
+
+      4. dialog 和 fragment 或者 activity之间传递信息
+            dialog和fragment之间传递信息
+                通过setTargetFragment和getTargetFragment就可以取得 target fragment的 request code 和
+                onActivityResult() 函数，就可以通过intent从传递数据
+            dialog和activity之间传数据
+                本来可以直接在dialog中用getActivity() 函数来取得activity的实例更新其数据，但是这样子不安全
+                正确的做法是在activty中implement dialog中的listener来实现数据通信
+                具体操作看 NewFolderDialogFragment
+
+       5, 多个fragment中数据的统一性
+           有RESTful API 的话一有数据更新就更新到API上面的
+           但是如果要保存本地的数据的话就要考虑数据的一致性
+             我的方法是让所有fragment的主句都指向一个地址，所以关键是当数据改变时，要更新该地址的数据，而不是让该数据的指针指向另一个地址
+             需要deep copy
