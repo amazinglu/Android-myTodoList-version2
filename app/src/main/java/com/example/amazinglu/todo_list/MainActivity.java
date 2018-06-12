@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity
 //                tabLayout.getTabAt(0).setText(R.string.todo_list);
 //                tabLayout.getTabAt(1).setText(R.string.finish_list);
                     /**
+                     * 更新整个view pager的数据
                      * my way is to setup the view pager again
                      * or we can use the way above, update the fragment inside the view page inside getItemPosition
                      * then set the title again
@@ -243,6 +244,7 @@ public class MainActivity extends AppCompatActivity
                 if (position == 0) {
                     int id = viewPager.getCurrentItem();
                     /**
+                     * 更新view pager当前的显示的fragment的数据
                      * get the current fragment from view pager
                      * do not use getItem, the getItem only call when first create the fragment in viewpager
                      * after the view pager is created, the fragment is on FragmentManager

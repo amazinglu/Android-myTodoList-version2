@@ -31,22 +31,34 @@ view pager and toolbar
             => 关键是如何取得fragment的实例
                 => 从fragmentManager中取
                 => 在FragmentPagerAdapter中保存fragment的实例
-        method 1:
+
+        method 1: 更新view pager当前的显示的fragment的数据
             OnPageChangeListener.onPageSelected(int position)
             在 view pager 的 page变动的时候会被调用
             此时可以从FragmentManager 中去取得fragment然后更新
-        method 2:
+            =》 viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
+
+        method 2: 用FragmentPagerAdapter.notifyDateSetChange()
             FragmentPagerAdapter.notifyDateSetChange()
             这个函数会调用FragmentPagerAdapter.getItemPosition(object object)
             在这列可以update fragment
             但是update完之后记得重新设置一下tabLayout的text
-        method 3:
+
+        method 3: 更新整个view pager的数据
         function: MainActivity.setUpDrawer.onNavigationItemSelected(MenuItem item)
             在更新数据之后，new 一个FragmentPagerAdapter， 然后重新setUpViewPager
+            =》 navigationView.setNavigationItemSelectedListener
 
       3. Search View in Recycler View
         事实上是用到recycler view 中的adapter的函数getFilter()
         具体参考： https://www.androidhive.info/2017/11/android-recyclerview-with-search-filter-functionality/
+            a: search_menus.xml => 创建search的UI，
+                然后记得app:actionViewClass="android.support.v7.widget.SearchView"
+            b: manifests中activity加入intent filter "android.intent.action.SEARCH"
+            c: TodoListFragment.java中设置searchview的相关属性和search query的相应事件
+                这里就是通过adapter的filter来根据query过滤数据
+            d: override adapter 的getfilter 函数
+            e: 记得加上res/xml/searchable.xml 文件
 
       4. dialog 和 fragment 或者 activity之间传递信息
             dialog和fragment之间传递信息
@@ -56,9 +68,12 @@ view pager and toolbar
                 本来可以直接在dialog中用getActivity() 函数来取得activity的实例更新其数据，但是这样子不安全
                 正确的做法是在activty中implement dialog中的listener来实现数据通信
                 具体操作看 NewFolderDialogFragment
+                =》其实listener的原理就是这样子的
 
        5, 多个fragment中数据的统一性
-           有RESTful API 的话一有数据更新就更新到API上面的
-           但是如果要保存本地的数据的话就要考虑数据的一致性
-             我的方法是让所有fragment的主句都指向一个地址，所以关键是当数据改变时，要更新该地址的数据，而不是让该数据的指针指向另一个地址
-             需要deep copy
+           a: 有RESTful API 的话一有数据更新就更新到API上面的
+           b: 但是如果要保存本地的数据的话就要考虑数据的一致性
+                我的方法是让所有fragment的data都指向一个地址，所以关键是当数据改变时，要更新该地址的数据，而不是让该数据的指针指向另一个地址
+                需要deep copy (！！！！非常重要，只要涉及到数据改变的地方都需要注意)
+
+
